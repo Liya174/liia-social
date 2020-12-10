@@ -1,0 +1,14 @@
+.header {
+    grid-area: h;
+    background-color: paleturquoise;
+    position: sticky;
+    display: flex;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.header img {
+    height: 50px;
+    margin: 5px 10px;
+}

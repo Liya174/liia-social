@@ -1,0 +1,8 @@
+.nav {
+    grid-area: n;
+    background-color: peachpuff;
+    /* border: 1px solid paleturquoise; */
+    padding: 10px 10px 0 10px;
+    position: sticky;
+    top: 60px;
+}

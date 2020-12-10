@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import "./App.css";
+import Header from "./Components/Header/Header";
+import Navbar from "./Components/Navbar/Navbar";
+import Profile from "./Components/Profile/Profile";
+import Dialogs from "./Components/Dialogs/Dialogs";
+import News from "./Components/News/News";
+import Music from "./Components/Music/Music";
+import Settings from "./Components/Settings/Settings";
+
+const App = (props) => {
+    const { state, dispatch } = props;
+    return (
+        <div className="app-wrapper">
+            <Header />
+            <Navbar navbarPage={state.navbarPage} />
+
+            <div className="app-wrapper-content">
+                <Route
+                    path="/profile"
+                    render={() => (
+                        <Profile
+                            profilePage={state.profilePage}
+                            dispatch={dispatch}
+                        />
+                    )}
+                />
+                <Route
+                    path="/dialogs"
+                    render={() => (
+                        <Dialogs
+                            dialogsPage={state.dialogsPage}
+                            dispatch={dispatch}
+                        />
+                    )}
+                />
+                <Route path="/news" render={() => <News />} />
+                <Route path="/music" render={() => <Music />} />
+                <Route path="/settings" render={() => <Settings />} />
+            </div>
+        </div>
+    );
+};
 
 export default App;

@@ -1,0 +1,43 @@
+.myPosts {
+  margin-left: 10px;
+}
+
+.posts {
+  margin-top: 25px;
+}
+
+.subtitle {
+  padding-bottom: 15px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.newPost {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #336666;
+  border-radius: 5px;
+  overflow: hidden;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.textarea {
+  height: 100px;
+  resize: none;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.addButton {
+  font-weight: 600;
+  font-size: 14px;
+  color: #336666;
+  border: none;
+  background: paleturquoise;
+  padding: 5px;
+  cursor: pointer;
+}

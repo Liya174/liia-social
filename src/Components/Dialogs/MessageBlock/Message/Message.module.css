@@ -1,0 +1,32 @@
+.message {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.friendAuthor {
+    margin-left: auto;
+}
+
+.userAuthor {
+    margin-right: auto;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+    box-shadow: 1px 1px 5px cadetblue;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.friendAvatar {
+    order: 2;
+    margin-right: 0;
+    margin-left: 10px;
+}
