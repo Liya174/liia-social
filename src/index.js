@@ -3,21 +3,21 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-import store from "./redux/state";
+import store from "./redux/redux-store";
 
-const rerenderEntireTree = (store) => {
+const rerenderEntireTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App
-                    state={store.getState()}
-                    dispatch={store.dispatch.bind(store)}
-                />
+                <App store={store} />
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById("root")
     );
 };
-rerenderEntireTree(store);
+rerenderEntireTree(store.getState());
 
-store.subscribe(rerenderEntireTree);
+store.subscribe(() => {
+    let state = store.getState();
+    rerenderEntireTree(state);
+});

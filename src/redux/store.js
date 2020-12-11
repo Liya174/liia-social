@@ -4,6 +4,10 @@ import avatar03 from "./../img/avatars/avatar_03.jpg";
 import avatar04 from "./../img/avatars/avatar_04.jpg";
 import avatar05 from "./../img/avatars/avatar_05.jpg";
 
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import navbarReducer from "./navbar-reducer";
+
 let store = {
     _state: {
         dialogsPage: {
@@ -72,35 +76,22 @@ let store = {
         return state;
     },
     subscribe(observer) {
-        this._callSubscriber = observer; //наблюдатель (паттерн)
+        this._callSubscriber = observer;
     },
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            const newPost = {
-                id: this._state.profilePage.postsInfo.length + 1,
-                message: this._state.profilePage.newPostText,
-                likeCount: 0,
-            };
-            this._state.profilePage.postsInfo.push(newPost);
-            this._state.profilePage.newPostText = "";
-            this._callSubscriber(this);
-        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-            this._state.profilePage.newPostText = action.newPostText;
-            this._callSubscriber(this);
-        } else if (action.type === "ADD-MESSAGE") {
-            const newMessage = {
-                id: this._state.dialogsPage.messages.length + 1,
-                text: this._state.dialogsPage.newMessageText,
-                author: "user",
-            };
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.newMessageText = "";
-            this._callSubscriber(this);
-        } else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
-            this._state.dialogsPage.newMessageText = action.newMessageText;
-            this._callSubscriber(this);
-        }
+        this._state.profilePage = profileReducer(
+            this._state.profilePage,
+            action
+        );
+        this._state.dialogsPage = dialogsReducer(
+            this._state.dialogsPage,
+            action
+        );
+        this._state.navbarPage = navbarReducer(this._state.navbarPage, action);
+
+        this._callSubscriber(this._state);
     },
 };
 
 export default store;
+window.store = store;

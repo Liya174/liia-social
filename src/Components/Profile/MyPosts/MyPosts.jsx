@@ -3,12 +3,17 @@ import Post from "./../Post/Post";
 import React from "react";
 
 const MyPosts = (props) => {
-    const { postsInfo, newPostText, dispatch } = props;
-    let postElements = postsInfo.map(({ message, likeCount, id }) => (
-        <Post message={message} likeCount={likeCount} key={id} />
+    let postElements = props.postsInfo.map((postInfo) => (
+        <Post postInfo={postInfo} key={postInfo.id} />
     ));
 
-    let newPostElement = React.createRef();
+    const onAddPost = () => {
+        props.addPost();
+    };
+
+    const onPostChange = (event) => {
+        props.updateNewPost(event);
+    };
 
     return (
         <div className={s.myPosts}>
@@ -16,22 +21,13 @@ const MyPosts = (props) => {
 
             <div className={s.newPost}>
                 <textarea
-                    onChange={(event) =>
-                        dispatch({
-                            type: "UPDATE-NEW-POST-TEXT",
-                            newPostText: event.target.value,
-                        })
-                    }
-                    ref={newPostElement}
+                    onChange={(event) => onPostChange(event)}
                     className={s.textarea}
                     placeholder="Write new post here"
                     required
-                    value={newPostText}
+                    value={props.newPostText}
                 />
-                <button
-                    onClick={() => dispatch({ type: "ADD-POST" })}
-                    className={s.addButton}
-                >
+                <button onClick={onAddPost} className={s.addButton}>
                     Add new post
                 </button>
             </div>
