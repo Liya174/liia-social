@@ -1,0 +1,78 @@
+.button {
+    width: 70px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #336666;
+    border: none;
+    border-radius: 5px;
+    background: paleturquoise;
+    padding: 5px;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.user {
+    height: 100px;
+    max-width: 600px;
+    display: flex;
+    margin-bottom: 25px;
+    padding: 5px;
+    border: 1px solid #336666;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.userAvatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+}
+.avatar {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.userInfo {
+    max-width: 500px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    overflow: hidden;
+}
+
+.general,
+.living {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.general {
+    margin-right: 30px;
+}
+
+.general .name {
+    font-weight: 500;
+}
+
+.general .status {
+    color: #888888;
+}
+
+.living {
+}

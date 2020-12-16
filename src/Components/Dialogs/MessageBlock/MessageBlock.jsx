@@ -3,10 +3,9 @@ import Message from "./Message/Message";
 import NewMessage from "./NewMessage/NewMessage";
 
 const MessagesBlock = (props) => {
-    const { messages, newMessageText, dispatch } = props;
     return (
         <>
-            {messages.map(({ text, id, author }) => (
+            {props.messages.map(({ text, id, author }) => (
                 <Message
                     text={text}
                     id={id}
@@ -14,7 +13,11 @@ const MessagesBlock = (props) => {
                     key={id.toString()}
                 />
             ))}
-            <NewMessage newMessageText={newMessageText} dispatch={dispatch} />
+            <NewMessage
+                newMessageText={props.newMessageText}
+                onMessageChange={props.onMessageChange}
+                onAddMessage={props.onAddMessage}
+            />
         </>
     );
 };

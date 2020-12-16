@@ -1,16 +1,20 @@
 import s from "./DialogItem.module.css";
 import { NavLink } from "react-router-dom";
 
-const DialogItem = ({ name, id, avatarSrc }) => {
+const DialogItem = (props) => {
     return (
-        <div className={s.dialog} key={id.toString()}>
+        <div className={s.dialog} key={props.usersDataElement.id.toString()}>
             <NavLink
-                to={`/dialogs/${id}`}
+                to={`/dialogs/${props.usersDataElement.id}`}
                 className={s.dialogName}
                 activeClassName={s.active}
             >
-                <img src={avatarSrc} className={s.avatar} alt="avatar" />
-                {name}
+                <img
+                    src={props.usersDataElement.avatarSrc}
+                    className={s.avatar}
+                    alt="avatar"
+                />
+                {props.usersDataElement.name}
             </NavLink>
         </div>
     );

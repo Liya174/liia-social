@@ -1,0 +1,13 @@
+.preloader {
+    width: 100%;
+    position: absolute;
+    content: "";
+    top: 50px;
+    left: calc(50% - 50px);
+    opacity: 0.8;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+}

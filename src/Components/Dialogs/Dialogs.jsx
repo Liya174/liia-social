@@ -5,13 +5,8 @@ import MessageBlock from "./MessageBlock/MessageBlock";
 const Dialogs = (props) => {
     const { usersData, messages, newMessageText } = props.dialogsPage;
 
-    const usersDataElements = usersData.map(({ name, id, avatarSrc }) => (
-        <DialogItem
-            name={name}
-            id={id}
-            avatarSrc={avatarSrc}
-            key={id.toString()}
-        />
+    const usersDataElements = usersData.map((userData) => (
+        <DialogItem usersDataElement={userData} key={userData.id.toString()} />
     ));
 
     return (
@@ -21,7 +16,8 @@ const Dialogs = (props) => {
                 <MessageBlock
                     messages={messages}
                     newMessageText={newMessageText}
-                    dispatch={props.dispatch}
+                    onMessageChange={props.onMessageChange}
+                    onAddMessage={props.onAddMessage}
                 />
             </div>
         </div>

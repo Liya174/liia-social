@@ -21,4 +21,5 @@
 .app-wrapper-content {
     grid-area: c;
     border: 2px solid peachpuff;
+    position: relative;
 }

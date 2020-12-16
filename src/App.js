@@ -2,36 +2,26 @@ import { Route } from "react-router-dom";
 
 import "./App.css";
 import Header from "./Components/Header/Header";
-import Navbar from "./Components/Navbar/Navbar";
-import Profile from "./Components/Profile/Profile";
-import Dialogs from "./Components/Dialogs/Dialogs";
+import NavbarContainer from "./Components/Navbar/NavbarContainer";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
+import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
+import UsersContainer from "./Components/Users/UsersContainer";
 
-const App = (props) => {
-    const { state, dispatch } = props;
+const App = () => {
     return (
         <div className="app-wrapper">
             <Header />
-            <Navbar navbarPage={state.navbarPage} />
+            <NavbarContainer />
 
             <div className="app-wrapper-content">
-                <Route
-                    path="/profile"
-                    render={() => <Profile store={props.store} />}
-                />
-                <Route
-                    path="/dialogs"
-                    render={() => (
-                        <Dialogs
-                            dialogsPage={state.dialogsPage}
-                            dispatch={dispatch}
-                        />
-                    )}
-                />
+                <Route path="/profile" render={() => <ProfileContainer />} />
+                <Route path="/dialogs" render={() => <DialogsContainer />} />
                 <Route path="/news" render={() => <News />} />
                 <Route path="/music" render={() => <Music />} />
+                <Route path="/users" render={() => <UsersContainer />} />
                 <Route path="/settings" render={() => <Settings />} />
             </div>
         </div>
