@@ -3,7 +3,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import MessageBlock from "./MessageBlock/MessageBlock";
 
 const Dialogs = (props) => {
-    const { usersData, messages, newMessageText } = props.dialogsPage;
+    const { usersData, messages } = props.dialogsPage;
 
     const usersDataElements = usersData.map((userData) => (
         <DialogItem usersDataElement={userData} key={userData.id.toString()} />
@@ -15,8 +15,6 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 <MessageBlock
                     messages={messages}
-                    newMessageText={newMessageText}
-                    onMessageChange={props.onMessageChange}
                     onAddMessage={props.onAddMessage}
                 />
             </div>

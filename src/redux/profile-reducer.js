@@ -1,6 +1,8 @@
-const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
+import { profileAPI } from "../api/api";
+
 const ADD_POST = "ADD_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_USER_STATUS = "SET_USER_STATUS";
 
 let initialState = {
     postsInfo: [
@@ -9,38 +11,16 @@ let initialState = {
         { id: 3, message: "Two", likeCount: 30 },
         { id: 4, message: "One", likeCount: 6 },
     ],
-    newPostText: "",
     userProfile: null,
+    userStatus: "",
 };
-
-// const myProfile = {
-//     aboutMe: "Pugs like hugs",
-//     contacts: {
-//         facebook: null,
-//         website: null,
-//         vk: null,
-//         twitter: null,
-//         instagram: null,
-//         youtube: null,
-//         github: null,
-//         mainLink: null,
-//     },
-//     lookingForAJob: true,
-//     lookingForAJobDescription: "of course",
-//     fullName: "Little sweetie pug",
-//     userId: 100,
-//     photos: {
-//         small: "",
-//         large: "",
-//     },
-// };
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
                 id: state.postsInfo.length + 1,
-                message: state.newPostText,
+                message: action.post,
                 likeCount: 0,
             };
             return {
@@ -49,16 +29,16 @@ const profileReducer = (state = initialState, action) => {
                 postsInfo: [...state.postsInfo, newPost],
             };
 
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newPostText,
-            };
-
         case SET_USER_PROFILE:
             return {
                 ...state,
                 userProfile: action.userProfile,
+            };
+
+        case SET_USER_STATUS:
+            return {
+                ...state,
+                userStatus: action.userStatus,
             };
 
         default:
@@ -66,14 +46,33 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 
-export const addPost = () => ({ type: ADD_POST });
-export const updateNewPost = (text) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    newPostText: text,
-});
+export const addPost = (post) => ({ type: ADD_POST, post });
+
 export const setUserProfile = (profile) => ({
     type: SET_USER_PROFILE,
     userProfile: profile,
 });
+export const setUserStatus = (status) => ({
+    type: SET_USER_STATUS,
+    userStatus: status,
+});
+
+export const getUserProfile = (userId) => (dispatch) => {
+    profileAPI.getProfile(userId).then((data) => {
+        dispatch(setUserProfile(data));
+    });
+};
+export const getUserStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId).then((data) => {
+        dispatch(setUserStatus(data));
+    });
+};
+export const updateStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status).then((data) => {
+        if (data.resultCode === 0) {
+            dispatch(setUserStatus(status));
+        }
+    });
+};
 
 export default profileReducer;

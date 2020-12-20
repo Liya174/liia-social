@@ -1,0 +1,50 @@
+.loginPage {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.subtitle {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    margin-bottom: 20px;
+}
+
+.form {
+    width: 260px;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.input {
+    padding: 5px;
+    font-size: 16px;
+}
+
+.checkboxLine {
+    display: flex;
+    align-items: center;
+}
+.checkbox {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+.submit {
+    font-size: 16px;
+    padding: 5px;
+    margin-top: 15px;
+    font-weight: 500;
+    background-color: rgb(51, 102, 102);
+    color: #ffffff;
+    border: 1px solid rgb(51, 102, 102);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}

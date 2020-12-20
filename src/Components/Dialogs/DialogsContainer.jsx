@@ -1,15 +1,18 @@
 import Dialogs from "./Dialogs";
-import { onAddMessage, onMessageChange } from "../../redux/dialogs-reducer";
+import { onAddMessage } from "../../redux/dialogs-reducer";
 import { connect } from "react-redux";
+import withAuthRedirect from "../hoc/Redirect/withAuthRedirect";
+import { compose } from "redux";
 
 const mapStateToProps = (state) => {
-    const { dialogsPage } = state;
-    return { dialogsPage };
+    return { dialogsPage: state.dialogsPage };
 };
 
 const dispatchObject = {
     onAddMessage,
-    onMessageChange,
 };
 
-export default connect(mapStateToProps, dispatchObject)(Dialogs);
+export default compose(
+    connect(mapStateToProps, dispatchObject),
+    withAuthRedirect
+)(Dialogs);

@@ -20,6 +20,6 @@
 
 .app-wrapper-content {
     grid-area: c;
-    border: 2px solid peachpuff;
+    border: 2px solid #fdefe3;
     position: relative;
 }

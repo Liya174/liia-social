@@ -1,9 +1,10 @@
-import s from "./User.module.css";
 import userPhoto from "../../../img/account.svg";
 import { NavLink } from "react-router-dom";
 
+import s from "./User.module.css";
+
 const User = (props) => {
-    const { users, follow, unfollow } = props;
+    const { users, followingInProgress, followUser, unfollowUser } = props;
 
     return (
         <>
@@ -19,14 +20,24 @@ const User = (props) => {
                         </NavLink>
                         {user.followed ? (
                             <button
-                                onClick={() => unfollow(user.id)}
+                                disabled={followingInProgress.some(
+                                    (id) => id === user.id
+                                )}
+                                onClick={() => {
+                                    unfollowUser(user.id);
+                                }}
                                 className={s.button}
                             >
                                 Unfollow
                             </button>
                         ) : (
                             <button
-                                onClick={() => follow(user.id)}
+                                disabled={followingInProgress.some(
+                                    (id) => id === user.id
+                                )}
+                                onClick={() => {
+                                    followUser(user.id);
+                                }}
                                 className={s.button}
                             >
                                 Follow

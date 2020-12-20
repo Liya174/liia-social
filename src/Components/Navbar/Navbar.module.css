@@ -1,6 +1,6 @@
 .nav {
     grid-area: n;
-    background-color: peachpuff;
+    background-color: #fdefe3;
     /* border: 1px solid paleturquoise; */
     padding: 10px 10px 0 10px;
     position: sticky;

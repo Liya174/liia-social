@@ -3,6 +3,10 @@ import Message from "./Message/Message";
 import NewMessage from "./NewMessage/NewMessage";
 
 const MessagesBlock = (props) => {
+    const addMessage = (formData) => {
+        props.onAddMessage(formData.textarea);
+    };
+
     return (
         <>
             {props.messages.map(({ text, id, author }) => (
@@ -13,11 +17,7 @@ const MessagesBlock = (props) => {
                     key={id.toString()}
                 />
             ))}
-            <NewMessage
-                newMessageText={props.newMessageText}
-                onMessageChange={props.onMessageChange}
-                onAddMessage={props.onAddMessage}
-            />
+            <NewMessage onSubmit={addMessage} />
         </>
     );
 };

@@ -40,8 +40,9 @@ const Users = (props) => {
             <div>
                 <User
                     users={props.users}
-                    follow={props.follow}
-                    unfollow={props.unfollow}
+                    followingInProgress={props.followingInProgress}
+                    followUser={props.followUser}
+                    unfollowUser={props.unfollowUser}
                 />
             </div>
         </div>

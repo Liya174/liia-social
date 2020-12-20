@@ -13,6 +13,13 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
 }
+.button:hover {
+    background-color: #336666;
+    color: #ffffff;
+}
+.button:disabled {
+    color: #88acac;
+}
 
 .user {
     height: 100px;

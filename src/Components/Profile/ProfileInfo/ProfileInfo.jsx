@@ -1,4 +1,5 @@
 import Preloader from "../../common/Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
 import s from "./ProfileInfo.module.css";
 import thumbDown from "../../../img/thumbDown.svg";
 import thumbUp from "../../../img/thumbUp.svg";
@@ -10,6 +11,7 @@ import website from "../../../img/website.svg";
 import github from "../../../img/github.svg";
 import mainLink from "../../../img/mainLink.svg";
 import vk from "../../../img/vk.svg";
+import userPhoto from "../../../img/account.svg";
 
 const ProfileInfo = (props) => {
     if (!props.userProfile) {
@@ -40,7 +42,6 @@ const ProfileInfo = (props) => {
     const userContacts = [];
     for (let key in contacts) {
         if (contacts[key]) {
-            console.log(contacts[key]);
             userContacts.push(
                 <a
                     key={key}
@@ -51,8 +52,9 @@ const ProfileInfo = (props) => {
                             : `https://${contacts[key]}`
                     }
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
-                    <img src={contactLogo[key]} />
+                    <img src={contactLogo[key]} alt={key} />
                 </a>
             );
         }
@@ -63,7 +65,11 @@ const ProfileInfo = (props) => {
             <div className={s.background}></div>
 
             <div className={s.informationBlock}>
-                <img className={s.avatar} src={photos.large} alt="avatar" />
+                <img
+                    className={s.avatar}
+                    src={photos.large || userPhoto}
+                    alt="avatar"
+                />
                 <div className={s.userInfo}>
                     <h3 className={s.name}>{fullName}</h3>
                     <div className={s.jobStatus}>
@@ -85,6 +91,10 @@ const ProfileInfo = (props) => {
                     </div>
                 </div>
             </div>
+            <ProfileStatus
+                userStatus={props.userStatus}
+                updateStatus={props.updateStatus}
+            />
         </div>
     );
 };

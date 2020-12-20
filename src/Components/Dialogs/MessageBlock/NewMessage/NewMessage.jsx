@@ -1,28 +1,25 @@
 import s from "./NewMessage.module.css";
 import React from "react";
+import { Field, reduxForm } from "redux-form";
+import { Element } from "../../../common/FormsControls/FormsControls";
+import { maxLength, required } from "../../../../utils/validators/validators";
+
+const maxLengthText = maxLength(30);
+const Textarea = Element("textarea");
 
 const NewMessage = (props) => {
-    const addMessage = () => {
-        props.onAddMessage();
-    };
-
-    const updateNewMessageText = (event) => {
-        props.onMessageChange(event.target.value);
-    };
-
     return (
-        <div className={s.newMessage}>
-            <textarea
-                onChange={(event) => updateNewMessageText(event)}
+        <form className={s.newMessage} onSubmit={props.handleSubmit}>
+            <Field
+                component={Textarea}
                 className={s.textarea}
+                name={"textarea"}
                 placeholder="Write new message here"
-                value={props.newMessageText}
-            ></textarea>
-            <button onClick={addMessage} className={s.addButton}>
-                Send message
-            </button>
-        </div>
+                validate={[required, maxLengthText]}
+            />
+            <button className={s.addButton}>Send message</button>
+        </form>
     );
 };
 
-export default NewMessage;
+export default reduxForm({ form: "addMessage" })(NewMessage);
