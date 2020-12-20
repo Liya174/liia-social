@@ -11,9 +11,9 @@ const LoginForm = (props) => {
             <Field
                 component={Input}
                 className={s.input}
-                placeholder="login"
+                placeholder="email"
                 type="text"
-                name={"login"}
+                name={"email"}
                 validate={[required]}
             />
             <Field
@@ -33,7 +33,10 @@ const LoginForm = (props) => {
                 />
                 <label>Remember me</label>
             </div>
-            <button className={s.submit}>Login</button>
+            <div className={`${s.errorField} ${props.error ? s.active : ""}`}>
+                {props.error}
+            </div>
+            <button className={s.submit}>Submit</button>
         </form>
     );
 };

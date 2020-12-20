@@ -34,10 +34,20 @@
     height: 18px;
 }
 
+.errorField {
+    height: 25px;
+    margin-top: 5px;
+    align-self: center;
+    color: rgba(255, 0, 0, 0);
+    font-size: 13px;
+}
+.errorField.active {
+    color: rgb(255, 0, 0);
+}
+
 .submit {
     font-size: 16px;
     padding: 5px;
-    margin-top: 15px;
     font-weight: 500;
     background-color: rgb(51, 102, 102);
     color: #ffffff;

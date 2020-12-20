@@ -8,8 +8,8 @@ import LoginForm from "./LoginForm";
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        let { login, password, rememberMe } = formData;
-        props.login(login, password, rememberMe);
+        let { email, password, rememberMe } = formData;
+        props.login(email, password, rememberMe);
     };
 
     if (props.isAuth) {
