@@ -17,6 +17,8 @@ let initialState = {
     followingInProgress: [],
 };
 
+//REDUCER -------------------------------------------------------------------------------------------------
+
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW:
@@ -78,6 +80,8 @@ const usersReducer = (state = initialState, action) => {
     }
 };
 
+//ACTIONS -------------------------------------------------------------------------------------------------
+
 export const followSuccess = (userId) => ({
     type: FOLLOW,
     userId,
@@ -114,11 +118,13 @@ export const toggleFollowingProgress = (followingProgress, userId) => ({
     userId,
 });
 
-export const getUsers = (pageSize, currentPage) => {
+//THUNKS -------------------------------------------------------------------------------------------------
+export const requestUsers = (pageSize, page) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
+        dispatch(setCurrentPage(page));
 
-        usersAPI.getUsers(pageSize, currentPage).then((data) => {
+        usersAPI.getUsers(pageSize, page).then((data) => {
             dispatch(toggleIsFetching(false));
             dispatch(setUsers(data.items));
             dispatch(setTotalUsersCount(data.totalCount));

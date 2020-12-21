@@ -54,7 +54,7 @@ export const setUserProfile = (avatar) => ({
 
 export const authMe = () => (dispatch) => {
     dispatch(toggleIsFetching(true));
-    authAPI.authMe().then((data) => {
+    return authAPI.authMe().then((data) => {
         if (data.resultCode === 0) {
             let { id, email, login } = data.data;
             dispatch(toggleIsFetching(false));

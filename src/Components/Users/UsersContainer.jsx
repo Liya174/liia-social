@@ -3,23 +3,29 @@ import React from "react";
 import {
     setCurrentPage,
     toggleFollowingProgress,
-    getUsers,
+    requestUsers,
     unfollowUser,
     followUser,
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import withAuthRedirect from "../hoc/Redirect/withAuthRedirect";
 import { compose } from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers,
+} from "../../redux/users-selectors";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.pageSize, this.props.currentPage);
+        this.props.requestUsers(this.props.pageSize, this.props.currentPage);
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.getUsers(this.props.pageSize, pageNumber);
+        this.props.requestUsers(this.props.pageSize, pageNumber);
     };
 
     render() {
@@ -52,33 +58,24 @@ class UsersContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const {
-        users,
-        pageSize,
-        totalUsersCount,
-        currentPage,
-        isFetching,
-        followingInProgress,
-    } = state.usersPage;
     return {
-        users,
-        pageSize,
-        totalUsersCount,
-        currentPage,
-        isFetching,
-        followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state),
     };
 };
 
 const dispatchObject = {
     setCurrentPage,
     toggleFollowingProgress,
-    getUsers,
+    requestUsers,
     unfollowUser,
     followUser,
 };
 
-export default compose(
-    connect(mapStateToProps, dispatchObject),
-    withAuthRedirect
-)(UsersContainer);
+export default compose(connect(mapStateToProps, dispatchObject))(
+    UsersContainer
+);
