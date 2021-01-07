@@ -18,7 +18,7 @@ const Users = ({
         <div className={s.userPage}>
             <h2 className={s.subtitle}>Users</h2>
             <Paginator
-                totalUsersCount={totalUsersCount}
+                totalItemsCount={totalUsersCount}
                 pageSize={pageSize}
                 currentPage={currentPage}
                 onPageChanged={onPageChanged}
