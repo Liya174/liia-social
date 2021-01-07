@@ -5,9 +5,9 @@ import s from "./Login.module.css";
 
 const Input = Element("input");
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
     return (
-        <form className={s.form} onSubmit={props.handleSubmit}>
+        <form className={s.form} onSubmit={handleSubmit}>
             <Field
                 component={Input}
                 className={s.input}
@@ -33,10 +33,10 @@ const LoginForm = (props) => {
                 />
                 <label>Remember me</label>
             </div>
-            <div className={`${s.errorField} ${props.error ? s.active : ""}`}>
-                {props.error}
+            <div className={`${s.errorField} ${error ? s.active : ""}`}>
+                {error}
             </div>
-            <button className={s.submit}>Submit</button>
+            <button className={s.submit}>Login</button>
         </form>
     );
 };

@@ -1,5 +1,4 @@
 import Preloader from "../../common/Preloader/Preloader";
-import ProfileStatus from "./ProfileStatus";
 import s from "./ProfileInfo.module.css";
 import thumbDown from "../../../img/thumbDown.svg";
 import thumbUp from "../../../img/thumbUp.svg";
@@ -12,9 +11,10 @@ import github from "../../../img/github.svg";
 import mainLink from "../../../img/mainLink.svg";
 import vk from "../../../img/vk.svg";
 import userPhoto from "../../../img/account.svg";
+import ProfileStatusHooks from "./ProfileStatusHooks";
 
-const ProfileInfo = (props) => {
-    if (!props.userProfile) {
+const ProfileInfo = ({ userProfile, userStatus, updateStatus }) => {
+    if (!userProfile) {
         return <Preloader />;
     }
 
@@ -26,7 +26,7 @@ const ProfileInfo = (props) => {
         fullName,
         userId,
         photos,
-    } = props.userProfile;
+    } = userProfile;
 
     const contactLogo = {
         facebook,
@@ -91,9 +91,9 @@ const ProfileInfo = (props) => {
                     </div>
                 </div>
             </div>
-            <ProfileStatus
-                userStatus={props.userStatus}
-                updateStatus={props.updateStatus}
+            <ProfileStatusHooks
+                userStatus={userStatus}
+                updateStatus={updateStatus}
             />
         </div>
     );

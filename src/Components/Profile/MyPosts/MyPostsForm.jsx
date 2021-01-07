@@ -5,13 +5,12 @@ import { maxLength, required } from "../../../utils/validators/validators";
 import { Element } from "../../common/FormsControls/FormsControls";
 
 const maxLengthText = maxLength(20);
-const Textarea = Element("textarea");
 
 const MyPostsForm = (props) => {
     return (
         <form className={s.newPost} onSubmit={props.handleSubmit}>
             <Field
-                component={Textarea}
+                component={"textarea"}
                 name="textarea"
                 className={s.textarea}
                 placeholder="Write new post here"

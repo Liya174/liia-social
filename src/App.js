@@ -1,7 +1,7 @@
-import { Route, withRouter } from "react-router-dom";
+import { BrowserRouter, Route, withRouter } from "react-router-dom";
 import React from "react";
 import { initializeApp } from "./redux/app-reducer";
-import { connect } from "react-redux";
+import { connect, Provider } from "react-redux";
 import { compose } from "redux";
 
 import "./App.css";
@@ -15,6 +15,7 @@ import Settings from "./Components/Settings/Settings";
 import UsersContainer from "./Components/Users/UsersContainer";
 import Login from "./Components/Login/Login";
 import Preloader from "./Components/common/Preloader/Preloader";
+import store from "./redux/redux-store";
 
 class App extends React.Component {
     componentDidMount() {
@@ -53,7 +54,19 @@ const mapStateToProps = (state) => ({
     initialized: state.app.initialized,
 });
 
-export default compose(
+const AppContainer = compose(
     withRouter,
     connect(mapStateToProps, { initializeApp })
 )(App);
+
+const SamiraiJSApp = () => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        </BrowserRouter>
+    );
+};
+
+export default SamiraiJSApp;

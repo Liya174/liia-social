@@ -1,7 +1,7 @@
 import s from "./Post.module.css";
 
-const Post = (props) => {
-    const { message, likeCount } = props.postInfo;
+const Post = ({ postInfo }) => {
+    const { message, likeCount } = postInfo;
     return (
         <div className={s.postBlock}>
             <div className={s.post}>

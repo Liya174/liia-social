@@ -4,7 +4,7 @@ import avatar03 from "./../img/avatars/avatar_03.jpg";
 import avatar04 from "./../img/avatars/avatar_04.jpg";
 import avatar05 from "./../img/avatars/avatar_05.jpg";
 
-const ADD_MESSAGE = "ADD-MESSAGE";
+const ADD_MESSAGE = "dialogs/ADD-MESSAGE";
 
 let initialState = {
     messages: [

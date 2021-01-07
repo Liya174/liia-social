@@ -1,7 +1,11 @@
 import s from "./FormsControls.module.css";
 
-export const Element = (Element) => ({ input, meta, ...props }) => {
-    const hasError = meta.touched && meta.error;
+export const Element = (Element) => ({
+    input,
+    meta: [touched, error],
+    ...props
+}) => {
+    const hasError = touched && error;
     return (
         <>
             <Element
@@ -11,7 +15,7 @@ export const Element = (Element) => ({ input, meta, ...props }) => {
             />
             {props.type !== "checkbox" ? (
                 <div className={`${s.errorText} ${hasError ? s.errorOn : ""}`}>
-                    {meta.error}
+                    {error}
                 </div>
             ) : (
                 ""
@@ -19,17 +23,3 @@ export const Element = (Element) => ({ input, meta, ...props }) => {
         </>
     );
 };
-// export const Element = (Element) => ({ input, meta, ...props }) => {
-//     const hasError = meta.touched && meta.error;
-//     return (
-//         <div
-//             className={`${s.formControl} ${hasError ? s.error : ""} ${
-//                 props.type === "checkbox" ? s.checkbox : ""
-//             }
-//                 `}
-//         >
-//             <Element {...props} {...input} />
-//             {hasError && <div className={s.errorText}>{meta.error}</div>}
-//         </div>
-//     );
-// };
