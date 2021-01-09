@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Liya174/liia-social/static/css/main.de2d857f.chunk.css",
-    "main.js": "/Liya174/liia-social/static/js/main.45b57a8d.chunk.js",
-    "main.js.map": "/Liya174/liia-social/static/js/main.45b57a8d.chunk.js.map",
+    "main.js": "/Liya174/liia-social/static/js/main.e247e622.chunk.js",
+    "main.js.map": "/Liya174/liia-social/static/js/main.e247e622.chunk.js.map",
     "runtime-main.js": "/Liya174/liia-social/static/js/runtime-main.6d709541.js",
     "runtime-main.js.map": "/Liya174/liia-social/static/js/runtime-main.6d709541.js.map",
     "static/js/2.79d195ed.chunk.js": "/Liya174/liia-social/static/js/2.79d195ed.chunk.js",
@@ -49,6 +49,6 @@
     "static/js/runtime-main.6d709541.js",
     "static/js/2.79d195ed.chunk.js",
     "static/css/main.de2d857f.chunk.css",
-    "static/js/main.45b57a8d.chunk.js"
+    "static/js/main.e247e622.chunk.js"
   ]
 }
