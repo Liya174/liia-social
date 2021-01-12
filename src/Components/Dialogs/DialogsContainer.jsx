@@ -5,7 +5,10 @@ import withAuthRedirect from "../hoc/Redirect/withAuthRedirect";
 import { compose } from "redux";
 
 const mapStateToProps = (state) => {
-    return { dialogsPage: state.dialogsPage };
+    return {
+        dialogsPage: state.dialogsPage,
+        profilePage: state.profilePage,
+    };
 };
 
 const dispatchObject = {

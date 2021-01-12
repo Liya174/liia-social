@@ -2,14 +2,19 @@ import s from "./MyPosts.module.css";
 import Post from "./../Post/Post";
 import React from "react";
 import MyPostsForm from "./MyPostsForm";
+import userPhoto from "../../../img/account.svg";
 
-const MyPosts = (props) => {
-    let postElements = props.postsInfo.map((postInfo) => (
-        <Post postInfo={postInfo} key={postInfo.id} />
+const MyPosts = ({ postsInfo, userProfile, addPost }) => {
+    let postElements = postsInfo.map((postInfo) => (
+        <Post
+            postInfo={postInfo}
+            userAvatar={userProfile ? userProfile.photos.small : userPhoto}
+            key={postInfo.id}
+        />
     ));
 
     const onAddPost = (formData) => {
-        props.addPost(formData.textarea);
+        addPost(formData.textarea);
     };
 
     return (

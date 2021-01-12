@@ -1,7 +1,7 @@
 import s from "./Message.module.css";
 import userPhoto from "../../../../img/account.svg";
 
-const Message = ({ text, id, author }) => {
+const Message = ({ text, id, author, userAvatar }) => {
     return (
         <>
             <div
@@ -14,11 +14,7 @@ const Message = ({ text, id, author }) => {
                     className={`${s.avatar} ${
                         author === "user" ? "" : s.friendAvatar
                     }`}
-                    src={
-                        author === "user"
-                            ? "https://images.unsplash.com/photo-1586710743198-3619668ad789?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
-                            : userPhoto
-                    }
+                    src={author === "user" ? userAvatar : userPhoto}
                     alt="avatar"
                 />
                 {text}

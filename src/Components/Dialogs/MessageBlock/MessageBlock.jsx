@@ -1,19 +1,19 @@
-import s from "./MessageBlock.module.css";
 import Message from "./Message/Message";
 import NewMessage from "./NewMessage/NewMessage";
 
-const MessagesBlock = (props) => {
+const MessagesBlock = ({ messages, userAvatar, onAddMessage }) => {
     const addMessage = (formData) => {
-        props.onAddMessage(formData.textarea);
+        onAddMessage(formData.textarea);
     };
 
     return (
         <>
-            {props.messages.map(({ text, id, author }) => (
+            {messages.map(({ text, id, author }) => (
                 <Message
                     text={text}
                     id={id}
                     author={author}
+                    userAvatar={userAvatar}
                     key={id.toString()}
                 />
             ))}

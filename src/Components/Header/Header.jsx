@@ -10,7 +10,7 @@ const Header = (props) => {
 
     return (
         <header className={s.header}>
-            <a href="#s">
+            <a href="#/profile">
                 <img className={s.logo} src={logo} alt="logo" />
             </a>
             <div className={s.loginBlock}>

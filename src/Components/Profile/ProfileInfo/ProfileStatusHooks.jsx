@@ -33,6 +33,11 @@ const ProfileStatusHooks = ({ userStatus, updateStatus, ...props }) => {
                         autoFocus={true}
                         onBlur={deactivateEditMode}
                         onChange={onChangeStatus}
+                        onKeyDown={(e) => {
+                            if (e.code === "Enter") {
+                                deactivateEditMode();
+                            }
+                        }}
                         value={statusText}
                     />
                 </div>

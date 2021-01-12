@@ -1,21 +1,29 @@
-import { BrowserRouter, Route, withRouter } from "react-router-dom";
 import React from "react";
+import { compose } from "redux";
+import store from "./redux/redux-store";
 import { initializeApp } from "./redux/app-reducer";
 import { connect, Provider } from "react-redux";
-import { compose } from "redux";
+import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
 
 import "./App.css";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import NavbarContainer from "./Components/Navbar/NavbarContainer";
-import ProfileContainer from "./Components/Profile/ProfileContainer";
-import DialogsContainer from "./Components/Dialogs/DialogsContainer";
+
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
-import UsersContainer from "./Components/Users/UsersContainer";
 import Login from "./Components/Login/Login";
 import Preloader from "./Components/common/Preloader/Preloader";
-import store from "./redux/redux-store";
+
+const ProfileContainer = React.lazy(() =>
+    import("./Components/Profile/ProfileContainer")
+);
+const DialogsContainer = React.lazy(() =>
+    import("./Components/Dialogs/DialogsContainer")
+);
+const UsersContainer = React.lazy(() =>
+    import("./Components/Users/UsersContainer")
+);
 
 class App extends React.Component {
     componentDidMount() {
@@ -31,19 +39,29 @@ class App extends React.Component {
                 <NavbarContainer />
 
                 <div className="app-wrapper-content">
-                    <Route
-                        path="/profile/:userId?"
-                        render={() => <ProfileContainer />}
-                    />
-                    <Route
-                        path="/dialogs"
-                        render={() => <DialogsContainer />}
-                    />
-                    <Route path="/news" render={() => <News />} />
-                    <Route path="/music" render={() => <Music />} />
-                    <Route path="/users" render={() => <UsersContainer />} />
-                    <Route path="/settings" render={() => <Settings />} />
-                    <Route path="/login" render={() => <Login />} />
+                    <React.Suspense fallback={<Preloader />}>
+                        <Switch>
+                            <Route
+                                path="/profile/:userId?"
+                                render={() => <ProfileContainer />}
+                            />
+                            <Route
+                                path="/dialogs"
+                                render={() => <DialogsContainer />}
+                            />
+                            <Route path="/news" render={() => <News />} />
+                            <Route path="/music" render={() => <Music />} />
+                            <Route
+                                path="/users"
+                                render={() => <UsersContainer />}
+                            />
+                            <Route
+                                path="/settings"
+                                render={() => <Settings />}
+                            />
+                            <Route path="/login" render={() => <Login />} />
+                        </Switch>
+                    </React.Suspense>
                 </div>
             </div>
         );
@@ -61,11 +79,11 @@ const AppContainer = compose(
 
 const SamiraiJSApp = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <AppContainer />
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     );
 };
 

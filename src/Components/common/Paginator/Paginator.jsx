@@ -43,7 +43,7 @@ const Paginator = ({
                     className={s.arrowButtons}
                     onClick={() => {
                         setPortionNumber(portionNumber - 1);
-                        onPageChanged(leftPortionPageNumber - portionSize);
+                        onPageChanged(rightPortionPageNumber - portionSize);
                     }}
                 >
                     <img src={arrowLeft} alt="left" />
