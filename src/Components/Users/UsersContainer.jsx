@@ -39,6 +39,7 @@ class UsersContainer extends React.Component {
             unfollowUser,
             currentPage,
             followingInProgress,
+            setCurrentPage,
         } = this.props;
 
         return (
@@ -53,6 +54,7 @@ class UsersContainer extends React.Component {
                     onPageChanged={this.onPageChanged}
                     followUser={followUser}
                     unfollowUser={unfollowUser}
+                    setCurrentPage={setCurrentPage}
                 />
             </>
         );

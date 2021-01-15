@@ -8,6 +8,7 @@ const Profile = ({
     userStatus,
     updateStatus,
     saveUploadedPhoto,
+    saveProfile,
 }) => {
     return (
         <>
@@ -17,6 +18,7 @@ const Profile = ({
                 userStatus={userStatus}
                 updateStatus={updateStatus}
                 saveUploadedPhoto={saveUploadedPhoto}
+                saveProfile={saveProfile}
             />
             <MyPostsContainer />
         </>

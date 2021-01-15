@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { profileAPI } from "../api/api";
 
 const ADD_POST = "profile/ADD_POST";
@@ -77,7 +78,6 @@ export const savePhotoSuccess = (photos) => ({
     type: SAVE_PHOTO_SUCCESS,
     photos: photos,
 });
-
 export const getUserProfile = (userId) => async (dispatch) => {
     const data = await profileAPI.getProfile(userId);
     dispatch(setUserProfile(data));
@@ -96,6 +96,34 @@ export const saveUploadedPhoto = (uploadedPhoto) => async (dispatch) => {
     const data = await profileAPI.updatePhoto(uploadedPhoto);
     if (data.resultCode === 0) {
         dispatch(savePhotoSuccess(data.data.photos));
+    }
+};
+export const saveProfile = (profileInfo) => async (dispatch, getState) => {
+    const userId = getState().auth.id;
+    const data = await profileAPI.updateProfileInfo(profileInfo);
+    if (data.resultCode === 0) {
+        dispatch(getUserProfile(userId));
+    } else {
+        const message =
+            data.messages.length > 0 ? data.messages[0] : "Some error";
+        const messageTextArray = message.split(" ");
+        const errorBlock = messageTextArray.pop().match(/([A-Za-z]+)\)$/)[1];
+        const errorBlockSmallFirstLetter =
+            errorBlock.charAt(0).toLowerCase() + errorBlock.slice(1);
+        const errorMessage = messageTextArray.join(" ");
+        if (message.includes("Contact")) {
+            dispatch(
+                stopSubmit("profileInfo", {
+                    contacts: {
+                        [errorBlockSmallFirstLetter]: errorMessage,
+                    },
+                })
+            );
+            return Promise.reject(message);
+        } else {
+            dispatch(stopSubmit("profileInfo", { _error: message }));
+            return Promise.reject(message);
+        }
     }
 };
 

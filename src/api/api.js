@@ -57,18 +57,31 @@ export const profileAPI = {
             })
             .then((response) => response.data);
     },
+    updateProfileInfo(profileInfo) {
+        return instance
+            .put(`profile`, profileInfo)
+            .then((response) => response.data);
+    },
 };
 
 export const authAPI = {
     authMe() {
         return instance.get(`auth/me`).then((response) => response.data);
     },
-    login(email, password, rememberMe = false) {
+    login(email, password, rememberMe = false, captcha) {
         return instance
-            .post(`auth/login`, { email, password, rememberMe })
+            .post(`auth/login`, { email, password, rememberMe, captcha })
             .then((response) => response.data);
     },
     logout() {
         return instance.delete(`auth/login`).then((response) => response.data);
+    },
+};
+
+export const securityAPI = {
+    getCaptcha() {
+        return instance
+            .get(`/security/get-captcha-url`)
+            .then((response) => response.data);
     },
 };

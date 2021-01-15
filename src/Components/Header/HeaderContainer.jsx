@@ -11,8 +11,8 @@ class HeaderContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const { isAuth, login, avatar } = state.auth;
-    return { isAuth, login, avatar };
+    const { id, isAuth, login } = state.auth;
+    return { id, isAuth, login };
 };
 
 const dispatchObject = {

@@ -4,7 +4,7 @@ import { Field, reduxForm } from "redux-form";
 import { maxLength, required } from "../../../utils/validators/validators";
 import { Element } from "../../common/FormsControls/FormsControls";
 
-const maxLengthText = maxLength(20);
+const maxLengthText = maxLength(200);
 
 const Textarea = Element("textarea");
 

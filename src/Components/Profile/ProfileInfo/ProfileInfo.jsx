@@ -13,6 +13,7 @@ const ProfileInfo = ({
     userStatus,
     updateStatus,
     saveUploadedPhoto,
+    saveProfile,
 }) => {
     const [editMode, setEditMode] = useState(false);
 
@@ -24,6 +25,10 @@ const ProfileInfo = ({
         if (e.target.files.length) {
             saveUploadedPhoto(e.target.files[0]);
         }
+    };
+
+    const onSubmit = (formData) => {
+        saveProfile(formData).then(() => setEditMode(false));
     };
 
     return (
@@ -48,8 +53,10 @@ const ProfileInfo = ({
                 </div>
                 {editMode ? (
                     <ProfileDataForm
-                        profile={userProfile}
+                        initialValues={userProfile}
+                        contacts={userProfile.contacts}
                         quitEditMode={() => setEditMode(false)}
+                        onSubmit={onSubmit}
                     />
                 ) : (
                     <ProfileData

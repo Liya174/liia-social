@@ -1,7 +1,9 @@
 import s from "./Paginator.module.css";
+import cn from "classnames";
 import React, { useState } from "react";
 import arrowLeft from "../../../img/arrowLeft.svg";
 import arrowRight from "../../../img/arrowRight.svg";
+import doubleArrow from "../../../img/doubleArrow.svg";
 
 const Paginator = ({
     totalItemsCount,
@@ -28,7 +30,9 @@ const Paginator = ({
         )
         .map((p) => (
             <button
-                className={`${s.pageNumber} ${p === currentPage && s.selected}`}
+                className={cn(s.pageNumber, {
+                    [s.selected]: p === currentPage,
+                })}
                 onClick={() => onPageChanged(p)}
                 key={p}
             >
@@ -40,10 +44,23 @@ const Paginator = ({
         <div className={s.pages}>
             {portionNumber > 1 && (
                 <button
-                    className={s.arrowButtons}
+                    className={cn(s.arrowButtons, s.arrowLeft)}
                     onClick={() => {
                         setPortionNumber(portionNumber - 1);
                         onPageChanged(rightPortionPageNumber - portionSize);
+                    }}
+                >
+                    <img src={doubleArrow} alt="left" />
+                </button>
+            )}
+
+            {currentPage > 1 && (
+                <button
+                    className={s.arrowButtons}
+                    onClick={() => {
+                        onPageChanged(currentPage - 1);
+                        currentPage === leftPortionPageNumber &&
+                            setPortionNumber(portionNumber - 1);
                     }}
                 >
                     <img src={arrowLeft} alt="left" />
@@ -51,6 +68,19 @@ const Paginator = ({
             )}
 
             {pageNumberButtons}
+
+            {currentPage < totalItemsCount && (
+                <button
+                    className={s.arrowButtons}
+                    onClick={() => {
+                        onPageChanged(currentPage + 1);
+                        currentPage === rightPortionPageNumber &&
+                            setPortionNumber(portionNumber + 1);
+                    }}
+                >
+                    <img src={arrowRight} alt="right" />
+                </button>
+            )}
 
             {portionNumber < portionCount && (
                 <button
@@ -60,7 +90,7 @@ const Paginator = ({
                         onPageChanged(leftPortionPageNumber + portionSize);
                     }}
                 >
-                    <img src={arrowRight} alt="right" />
+                    <img src={doubleArrow} alt="right" />
                 </button>
             )}
         </div>

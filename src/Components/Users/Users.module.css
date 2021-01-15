@@ -24,3 +24,10 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
 }
+
+.users {
+    max-width: 765px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}

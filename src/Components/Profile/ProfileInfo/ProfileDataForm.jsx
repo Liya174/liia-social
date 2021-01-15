@@ -1,52 +1,78 @@
 import s from "./ProfileInfo.module.css";
-import thumbDown from "../../../img/thumbDown.svg";
-import thumbUp from "../../../img/thumbUp.svg";
-import Contact from "./Contact";
+import cn from "classnames";
 
 import save from "../../../img/save.svg";
-import { reduxForm } from "redux-form";
+import { Field, reduxForm } from "redux-form";
+import { Element } from "../../common/FormsControls/FormsControls";
+import { maxLength } from "../../../utils/validators/validators";
 
-const ProfileDataForm = ({ profile, quitEditMode }) => {
-    const {
-        aboutMe,
-        contacts,
-        lookingForAJob,
-        lookingForAJobDescription,
-        fullName,
-    } = profile;
+const Input = Element("input");
+const Textarea = Element("textarea");
+
+const maxLengthText = maxLength(150);
+
+const ProfileDataForm = ({ contacts, handleSubmit, error }) => {
     return (
-        <form className={s.userInfo}>
+        <form className={s.userInfo} onSubmit={handleSubmit}>
             <div className={s.nameBlock}>
-                <h3 className={s.name}>{fullName}</h3>
-                <button className={s.editButton} onClick={quitEditMode}>
+                <h3 className={s.name}>Full name: </h3>
+                <Field
+                    component={Input}
+                    name="fullName"
+                    className={`${s.nameInput} ${s.input}`}
+                />
+                <button className={s.editButton}>
                     <img className={s.editImage} src={save} alt="save" />
                 </button>
             </div>
             <div className={s.jobStatus}>
                 <p className={s.question}>Looking for a job:</p>
-                <img
-                    className={s.jobStatusImage}
-                    src={lookingForAJob ? thumbUp : thumbDown}
-                    alt="hm"
-                />
-                <p>{lookingForAJobDescription}</p>
+                <div className={s.checkboxLine}>
+                    <Field
+                        component={Input}
+                        type="checkbox"
+                        name={"lookingForAJob"}
+                        className={s.checkbox}
+                        validate={maxLengthText}
+                    />
+                    <label>Yes/No</label>
+                </div>
             </div>
+            <Field
+                component={Textarea}
+                placeholder={"My professional skills"}
+                className={s.textarea}
+                name={"lookingForAJobDescription"}
+                validate={maxLengthText}
+            ></Field>
             <div className={s.aboutMe}>
                 <p className={s.question}>About me:</p>
-                <p>{aboutMe}</p>
             </div>
-            <div className={s.userContacts}>
-                <p className={s.question}>Contacts:</p>
-                {Object.keys(contacts).map(
-                    (key) =>
-                        contacts[key] && (
-                            <Contact
-                                key={key}
-                                contactKey={key}
-                                contacts={contacts}
-                            />
-                        )
-                )}
+            <Field
+                component={Textarea}
+                placeholder={"About me"}
+                className={s.textarea}
+                name={"aboutMe"}
+            ></Field>
+            <p className={s.question}>Contacts:</p>
+            <div className={`${s.userContacts} ${s.userContactsEdit}`}>
+                {Object.keys(contacts).map((key) => (
+                    <div className={s.userContactEdit} key={key}>
+                        <span>{key}:</span>
+                        <Field
+                            component={Input}
+                            placeholder={key}
+                            name={"contacts." + key}
+                            className={s.input}
+                        />
+                    </div>
+                ))}
+            </div>
+            {/* <div className={`${s.errorField} ${error ? s.active : ""}`}>
+                {error}
+            </div> */}
+            <div className={cn(s.errorField, { [s.active]: error })}>
+                {error}
             </div>
         </form>
     );

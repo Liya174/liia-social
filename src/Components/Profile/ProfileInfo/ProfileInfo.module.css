@@ -21,6 +21,10 @@
     align-items: center;
 }
 
+.userInfo {
+    width: calc(100% - 160px);
+}
+
 .avatar {
     height: 160px;
     width: 160px;
@@ -63,6 +67,7 @@
     position: absolute;
     z-index: -1;
 }
+
 .nameBlock {
     display: flex;
     align-items: center;
@@ -95,7 +100,7 @@
 .userContacts {
     display: flex;
     align-items: center;
-    height: 30px;
+    margin-bottom: 10px;
 }
 .question {
     font-weight: 500;
@@ -129,4 +134,58 @@
 .editStatus {
     border: 1px solid #336666;
     border-radius: 5px;
+}
+
+/* editing */
+.input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    font-size: 16px;
+}
+.nameInput {
+    width: 50%;
+    margin-left: 5px;
+}
+.checkboxLine {
+    display: flex;
+    align-items: center;
+}
+.checkbox {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+.textarea {
+    height: 60px;
+    resize: none;
+    border: none;
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #336666;
+    border-radius: 5px;
+}
+.errorField {
+    height: 25px;
+    margin-top: 5px;
+    align-self: center;
+    color: rgba(255, 0, 0, 0);
+    font-size: 13px;
+}
+.errorField.active {
+    color: rgb(255, 0, 0);
+}
+
+.userContactsEdit {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 100%;
+}
+.userContactEdit {
+    margin-right: 20px;
 }

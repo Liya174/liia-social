@@ -12,18 +12,19 @@ const Users = ({
     followingInProgress,
     followUser,
     unfollowUser,
+    setCurrentPage,
     ...props
 }) => {
     return (
         <div className={s.userPage}>
-            <h2 className={s.subtitle}>Users</h2>
             <Paginator
                 totalItemsCount={totalUsersCount}
                 pageSize={pageSize}
                 currentPage={currentPage}
                 onPageChanged={onPageChanged}
+                setCurrentPage={setCurrentPage}
             />
-            <div>
+            <div className={s.users}>
                 {users.map((user) => (
                     <User
                         key={user.id}
