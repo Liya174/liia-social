@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/liia-social/static/css/main.a71f269a.chunk.css",
-    "main.js": "/liia-social/static/js/main.703b09eb.chunk.js",
-    "main.js.map": "/liia-social/static/js/main.703b09eb.chunk.js.map",
+    "main.js": "/liia-social/static/js/main.8e3f0378.chunk.js",
+    "main.js.map": "/liia-social/static/js/main.8e3f0378.chunk.js.map",
     "runtime-main.js": "/liia-social/static/js/runtime-main.9783fcc1.js",
     "runtime-main.js.map": "/liia-social/static/js/runtime-main.9783fcc1.js.map",
     "static/js/2.072c7ea4.chunk.js": "/liia-social/static/js/2.072c7ea4.chunk.js",
@@ -55,6 +55,6 @@
     "static/js/runtime-main.9783fcc1.js",
     "static/js/2.072c7ea4.chunk.js",
     "static/css/main.a71f269a.chunk.css",
-    "static/js/main.703b09eb.chunk.js"
+    "static/js/main.8e3f0378.chunk.js"
   ]
 }
