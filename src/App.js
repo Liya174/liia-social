@@ -8,7 +8,7 @@ import {
 } from "./redux/app-reducer";
 import { connect, Provider } from "react-redux";
 import {
-    BrowserRouter,
+    HashRouter,
     Redirect,
     Route,
     Switch,
@@ -115,11 +115,11 @@ const AppContainer = compose(
 
 const SamiraiJSApp = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <AppContainer />
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     );
 };
 
